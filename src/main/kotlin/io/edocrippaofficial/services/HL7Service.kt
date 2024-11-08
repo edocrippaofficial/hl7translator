@@ -4,6 +4,7 @@ import ca.uhn.hl7v2.HL7Exception
 import ca.uhn.hl7v2.parser.Parser
 import ca.uhn.hl7v2.parser.PipeParser
 import ca.uhn.hl7v2.util.Terser
+import com.google.gson.Gson
 
 class HL7Service {
     private val parser: Parser = PipeParser()
@@ -12,10 +13,11 @@ class HL7Service {
         val message = parser.parse(hl7Message)
         val terser = Terser(message)
 
-        return parseMappings(mappings, terser)
+        val result = buildHL7FromMap(mappings, terser)
+        return result
     }
 
-    private fun parseMappings(mappingConfig: Map<String, Any>, terser: Terser): Map<String, Any?> {
+    private fun buildHL7FromMap(mappingConfig: Map<String, Any>, terser: Terser): Map<String, Any?> {
         val result = mutableMapOf<String, Any?>()
 
         mappingConfig.forEach { (jsonField, mappingValue) ->
@@ -29,7 +31,7 @@ class HL7Service {
                 }
                 is Map<*, *> -> {
                     @Suppress("UNCHECKED_CAST")
-                    result[jsonField] = parseMappings(mappingValue as Map<String, Any>, terser)
+                    result[jsonField] = buildHL7FromMap(mappingValue as Map<String, Any>, terser)
                 }
                 else -> println("Formato di mapping non riconosciuto per $jsonField")
             }
