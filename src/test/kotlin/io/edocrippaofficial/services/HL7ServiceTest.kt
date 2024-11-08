@@ -13,9 +13,17 @@ class HL7ServiceTest {
                 "PV1||N||||||||||||||||E\r" +
                 "DB1|1|PT\r"
 
-        val converter = HL7Service()
+        val mappings = mapOf(
+            "sendingApplication" to "MSH-3",
+            "receivingApplication" to "MSH-5-2",
+            "patient" to mapOf(
+                "firstName" to "PID-5-2",
+                "lastName" to "PID-5-1"
+            )
+        )
 
-        val result = converter.convert(hl7Message)
+        val converter = HL7Service()
+        val result = converter.convertToJson(hl7Message, mappings)
 
         val expectedJson = mapOf(
             "sendingApplication" to "LHA",

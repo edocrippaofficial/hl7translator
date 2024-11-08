@@ -29,12 +29,7 @@ dependencies {
     implementation("io.ktor:ktor-server-netty-jvm")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("io.ktor:ktor-server-config-yaml")
-
     implementation("ca.uhn.hapi:hapi-base:2.5.1")
-    implementation("ca.uhn.hapi:hapi-structures-v25:2.5.1")
-    implementation("ca.uhn.hapi:hapi-structures-v24:2.5.1")
-    implementation("ca.uhn.hapi:hapi-structures-v23:2.5.1")
-
     testImplementation("io.ktor:ktor-server-test-host-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
     testImplementation("com.jayway.jsonpath:json-path:2.9.0")
