@@ -1,12 +1,25 @@
 <configuration>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <fieldName>time</fieldName>
+                    <pattern>[UNIX_TIMESTAMP_AS_NUMBER]</pattern>
+                </timestamp>
+                <logLevel/>
+                <message/>
+                <stackTrace/>
+            </providers>
         </encoder>
     </appender>
-    <root level="trace">
-        <appender-ref ref="STDOUT"/>
+
+    <root level="TRACE">
+        <appender-ref ref="JSON_CONSOLE" />
     </root>
-    <logger name="org.eclipse.jetty" level="INFO"/>
-    <logger name="io.netty" level="INFO"/>
+
+    <logger name="io.netty" level="ERROR"/>
+    <logger name="ch.qos.logback" level="ERROR" />
+    <logger name="ca.uhn.hl7v2" level="ERROR" />
+    <logger name="io.ktor" level="ERROR" />
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
 </configuration>
