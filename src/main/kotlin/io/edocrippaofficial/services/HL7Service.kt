@@ -1,7 +1,6 @@
 package io.edocrippaofficial.services
 
 import ca.uhn.hl7v2.HL7Exception
-import ca.uhn.hl7v2.model.Message
 import ca.uhn.hl7v2.parser.Parser
 import ca.uhn.hl7v2.parser.PipeParser
 import ca.uhn.hl7v2.util.Terser
