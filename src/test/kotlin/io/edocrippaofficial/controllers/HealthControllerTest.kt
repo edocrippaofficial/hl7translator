@@ -1,4 +1,4 @@
-package io.edocrippaofficial
+package io.edocrippaofficial.controllers
 
 import io.edocrippaofficial.plugins.*
 import io.ktor.server.testing.*
@@ -8,7 +8,7 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.serialization.json.Json
 
-class HealthRoutesTest {
+class HealthControllerTest {
     @Test
     fun testHealthzRoute() = testApplication {
         application {
