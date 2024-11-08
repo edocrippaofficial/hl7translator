@@ -4,12 +4,15 @@ import ca.uhn.hl7v2.HL7Exception
 import ca.uhn.hl7v2.parser.Parser
 import ca.uhn.hl7v2.parser.PipeParser
 import ca.uhn.hl7v2.util.Terser
-import com.google.gson.Gson
 
-class HL7Service {
+interface HL7Translator {
+    fun convertToJson(hl7Message: String, mappings: Map<String, Any>): Map<String, Any?>
+}
+
+class HL7Service : HL7Translator {
     private val parser: Parser = PipeParser()
 
-    fun convertToJson(hl7Message: String, mappings: Map<String, Any>): Map<String, Any?> {
+    override fun convertToJson(hl7Message: String, mappings: Map<String, Any>): Map<String, Any?> {
         val message = parser.parse(hl7Message)
         val terser = Terser(message)
 
