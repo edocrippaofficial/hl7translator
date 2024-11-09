@@ -18,6 +18,10 @@ application {
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
+tasks.shadowJar {
+    archiveFileName.set("application.jar")
+}
+
 repositories {
     mavenCentral()
 }

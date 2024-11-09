@@ -12,7 +12,7 @@ class HealthControllerTest {
     @Test
     fun `test Healthz Route`() = testApplication {
         application {
-            configureRouting()
+            configureRouting(mutableMapOf<String, Any>())
         }
 
         @Serializable
@@ -27,7 +27,7 @@ class HealthControllerTest {
     @Test
     fun `test Ready Route`() = testApplication {
         application {
-            configureRouting()
+            configureRouting(mutableMapOf<String, Any>())
         }
 
         @Serializable
