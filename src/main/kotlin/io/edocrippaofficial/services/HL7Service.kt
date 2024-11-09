@@ -4,12 +4,13 @@ import ca.uhn.hl7v2.HL7Exception
 import ca.uhn.hl7v2.parser.Parser
 import ca.uhn.hl7v2.parser.PipeParser
 import ca.uhn.hl7v2.util.Terser
+import org.slf4j.Logger
 
 interface HL7Translator {
     fun convertToJson(hl7Message: String, mappings: Map<String, Any>): Map<String, Any?>
 }
 
-class HL7Service : HL7Translator {
+class HL7Service(private val logger: Logger) : HL7Translator {
     private val parser: Parser = PipeParser()
 
     override fun convertToJson(hl7Message: String, mappings: Map<String, Any>): Map<String, Any?> {
@@ -29,14 +30,14 @@ class HL7Service : HL7Translator {
                     try {
                         result[jsonField] = terser.get(mappingValue)
                     } catch (e: HL7Exception) {
-                        println("Errore nell'estrazione del campo $jsonField: ${e.message}")
+                        logger.warn("Error during the extraction of the field $jsonField", e)
                     }
                 }
                 is Map<*, *> -> {
                     @Suppress("UNCHECKED_CAST")
                     result[jsonField] = buildHL7FromMap(mappingValue as Map<String, Any>, terser)
                 }
-                else -> println("Formato di mapping non riconosciuto per $jsonField")
+                else -> logger.warn("Format not supported for $jsonField")
             }
         }
 

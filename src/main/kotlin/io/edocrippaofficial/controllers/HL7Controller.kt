@@ -15,6 +15,7 @@ fun Application.hl7Controller(
 ) {
     routing {
         post("/translate/from") {
+            val logger = call.application.environment.log
             val body = call.receive<TranslateFromRequest>()
 
             val mappings = mapOf(
@@ -25,6 +26,10 @@ fun Application.hl7Controller(
                     "lastName" to "PID-5-1"
                 )
             )
+
+            logger.trace("Body: {}", body.message)
+            logger.trace("Mappings: {}", mappings)
+
 
             val res = hl7Service.convertToJson(body.message, mappings)
             call.respond(res)

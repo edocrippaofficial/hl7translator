@@ -13,6 +13,6 @@ fun Application.configureRouting() {
 
     healthController()
 
-    val hl7Service = HL7Service()
+    val hl7Service = HL7Service(log)
     hl7Controller(hl7Service)
 }
