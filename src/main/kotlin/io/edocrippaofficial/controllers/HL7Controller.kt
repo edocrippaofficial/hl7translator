@@ -18,20 +18,9 @@ fun Application.hl7Controller(
             val logger = call.application.environment.log
             val body = call.receive<TranslateFromRequest>()
 
-            val mappings = mapOf(
-                "sendingApplication" to "MSH-3",
-                "receivingApplication" to "MSH-5-2",
-                "patient" to mapOf(
-                    "firstName" to "PID-5-2",
-                    "lastName" to "PID-5-1"
-                )
-            )
-
             logger.trace("Body: {}", body.message)
-            logger.trace("Mappings: {}", mappings)
 
-
-            val res = hl7Service.convertToJson(body.message, mappings)
+            val res = hl7Service.convertToJson(body.message)
             call.respond(res)
         }
     }

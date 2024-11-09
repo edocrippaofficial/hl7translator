@@ -1,0 +1,8 @@
+{
+  "sendingApplication": "MSH-3",
+  "receivingApplication": "MSH-5-2",
+  "patient": {
+    "firstName": "PID-5-2",
+    "lastName": "PID-5-1"
+  }
+}

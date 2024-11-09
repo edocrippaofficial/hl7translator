@@ -1,5 +1,6 @@
 package io.edocrippaofficial.services
 
+import org.slf4j.LoggerFactory
 import kotlin.test.*
 
 class HL7ServiceTest {
@@ -22,8 +23,9 @@ class HL7ServiceTest {
             )
         )
 
-        val converter = HL7Service()
-        val result = converter.convertToJson(hl7Message, mappings)
+        val testLogger = LoggerFactory.getLogger("testLogger")
+        val converter = HL7Service(testLogger, mappings)
+        val result = converter.convertToJson(hl7Message)
 
         val expectedJson = mapOf(
             "sendingApplication" to "LHA",
