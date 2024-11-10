@@ -7,12 +7,21 @@ class HL7ServiceTest {
 
     @Test
     fun `test HL7 to JSON conversion`() {
-        val hl7Message = "MSH|^~\\&|LHA^2.16.840.1.113883.2.9.3.12.4.5.2||^APC||202401231035||ADT^A28^ADT_A05|8684533|P|2.5|||||ITA|ASCII\r" +
-                "EVN||20240123103453\r" +
-                "PID|||50440099^^^LHA^PI~PRFRSL89P42A944R^^^^NNITA||PERFETTI^ROSSELLA^^^^^L||19890902|F|||RESIDENZA PIAZZA MAGGIORE, 55&RESIDENZA PIAZZA MAGGIORE&55^^BOLOGNA^BO^40100^100^L^^037006~DOMICILIO VIA VERSI 15&DOMICILIO VIA VERSI&15^^MODENA^MO^41100^100^H^^036023~^^BOLOGNA^BO^40100^100^N^^037006||0557733222^PRN^^^^^0557733221~-^ORN^^^^^-~-^VHN^^^^^-~-^MAIL^^^^^-|||||||||||||100||||N|||20240123103453|hsadmintest\r" +
-                "PD1|||BOLOGNA^^^^^^ASLA^^^080105~BOLOGNA^^^^^^ASLR^^^080105\r" +
-                "PV1||N||||||||||||||||E\r" +
-                "DB1|1|PT\r"
+        val hl7Message = "MSH|^~\\&|YourEHR|YourHospital|^MyEHR|MyClinic|202411101202||ADT^A28|5347022|P|2.3\r" +
+                "EVN|A28|202411101202\r" +
+                "PID||4000|4000||HINTZ^LUCIE^^MD||19431022|M||2054-5|45621 BRENNON SKYWAY^SUITE 855^NEW ANNETTA^MA^52211|GL|289-589-6398|737-832-6130||S||PATID4000^1^M10|647-316-5006|25199759^MA\r" +
+                "NK1|1|AUGUST^GRADY^C|WRD|||||202411101202\r" +
+                "NK1|2|SHERIDAN^FADEL^K|FND\r" +
+                "PV1|1|I|1000^2024^01||||16^SCHMIDT^LOYAL|3098^JOHNSTON^ICIE||SUR||-|||\r" +
+                "AL1|1||^NUTS||PRODUCES HIVES~RASH\r" +
+                "AL1|2||^WHEAT\r" +
+                "DG1|001|I10|1550|MAL NEO LIVER, PRIMARY|19880501103005|20240116210148||\r" +
+                "PR1|2234|M11|690^CODE495||20240814020893\r" +
+                "ROL|6^RECORDER^ROLE^ROLE MASTER LIST|AD|CP|MAUDE^WISOKY^HEATHER|20240128100136\r" +
+                "GT1|1|2531|ARACELY^MOSCISKI^D\r" +
+                "IN1|1|965062|694752|BCBS||||55442|\r" +
+                "IN2|ID7542493|SSN647-316-5006\r" +
+                "ROL|34^RECORDER^ROLE^ROLE MASTER LIST|AD|CP|EVA^BRUEN^GEORGE|20240109110112\r"
 
         val mappings = mapOf(
             "sendingApplication" to "MSH-3",
@@ -28,11 +37,11 @@ class HL7ServiceTest {
         val result = converter.convertToJson(hl7Message)
 
         val expectedJson = mapOf(
-            "sendingApplication" to "LHA",
-            "receivingApplication" to "APC",
+            "sendingApplication" to "YourEHR",
+            "receivingApplication" to "MyEHR",
             "patient" to mapOf(
-                "firstName" to "ROSSELLA",
-                "lastName" to "PERFETTI"
+                "firstName" to "LUCIE",
+                "lastName" to "HINTZ"
             )
         )
 
