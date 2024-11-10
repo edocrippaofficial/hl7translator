@@ -9,7 +9,7 @@ fun loadConfigMap(path: String): Map<String, Any> {
 
     val configFile = File(path)
     if (!configFile.exists()) {
-        throw FileNotFoundException("File di configurazione non trovato nel percorso: $path")
+        throw FileNotFoundException("No configuration file found at: $path")
     }
 
     val type = object : TypeToken<Map<String, Any>>() {}.type
