@@ -28,4 +28,6 @@ fun Application.module() {
     }
 
     configureRouting(configMap)
+
+    log.info("Router configured")
 }
