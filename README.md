@@ -49,7 +49,7 @@ hl7translator
 
 ## Example
 
-With the configuration file `translationMap.json`, making the following cURL request:
+With the configuration file [translationMap.json](./translationMap.json), making the following cURL request:
 
 ```bash
 curl --location 'localhost:3000/translate/from' \
