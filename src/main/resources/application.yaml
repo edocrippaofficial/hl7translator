@@ -3,6 +3,6 @@ ktor:
         modules:
             - io.edocrippaofficial.ApplicationKt.module
     deployment:
-        port: "$PORT:3000"
+        port: "$HTTP_PORT:3000"
     configmap:
         path: $CONFIGMAP_PATH

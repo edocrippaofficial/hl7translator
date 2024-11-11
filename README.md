@@ -1,6 +1,22 @@
 # HL7 Translator
 
-A simple HTTP server to translate HL7 messages into custom JSON
+A simple HTTP server to translate HL7 messages into custom 
+
+## Docker Image
+
+There is a Docker image available on [Docker Hub](https://hub.docker.com/r/edocrippaofficial/hl7translator)
+
+To run it locally just run the following command:
+
+```bash
+docker run -it \
+-p 3000:3000  \
+-v ./translationMap.json:/app/config/translationMap.json \
+-e HTTP_PORT=3000 \
+-e CONFIGMAP_PATH=/app/config/translationMap.json \
+-e LOG_LEVEL=trace \
+edocrippaofficial/hl7translator
+```
 
 ## Build and Run
 
@@ -25,6 +41,7 @@ docker build -t hl7translator . && \
 docker run -it \
 -p 3000:3000  \
 -v ./translationMap.json:/app/config/translationMap.json \
+-e HTTP_PORT=3000 \
 -e CONFIGMAP_PATH=/app/config/translationMap.json \
 -e LOG_LEVEL=trace \
 hl7translator
