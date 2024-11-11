@@ -4,7 +4,7 @@ ARG COMMIT_SHA=<not-specified>
 
 LABEL maintainer="https://github.com/edocrippaofficial" \
   name="HL7Translator" \
-  description="A simple HTTP server to translate HL7 messages into custom JSON" \
+  description="A simple HTTP server to translate HL7 messages into custom JSON"
 
 WORKDIR /home/java
 
