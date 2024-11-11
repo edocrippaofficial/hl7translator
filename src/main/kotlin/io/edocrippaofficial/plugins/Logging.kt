@@ -17,11 +17,11 @@ val Logging = createApplicationPlugin(name = "LoggingPlugin") {
     }
 
     on(ResponseSent) { call ->
-        MDC.remove("reqId")
-
         val uri = call.request.uri
         val httpMethod = call.request.httpMethod.value
         val status = call.response.status()
         call.application.environment.log.info("Response for: $httpMethod $uri: $status")
+
+        MDC.remove("reqId")
     }
 }
