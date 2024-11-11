@@ -11,6 +11,7 @@ To build and run the jar file, run the following command:
 ```bash
 ./gradlew clean build && \
 export CONFIGMAP_PATH=./translationMap.json && \
+export LOG_LEVEL=trace && \
 java -jar build/libs/application.jar
 ```
 
@@ -25,6 +26,7 @@ docker run -it \
 -p 3000:3000  \
 -v ./translationMap.json:/app/config/translationMap.json \
 -e CONFIGMAP_PATH=/app/config/translationMap.json \
+-e LOG_LEVEL=trace \
 hl7translator
 ```
 
