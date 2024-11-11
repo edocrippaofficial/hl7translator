@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -38,5 +40,11 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/hl7translator:latest .
-          docker push ${{ secrets.DOCKER_USERNAME }}/hl7translator:latest
+          if [[ ${{ github.ref_type }} == 'branch' ]]; then
+            TAG='latest'
+          elif [[ ${{ github.ref_type }} == 'tag' ]]; then
+            TAG=${{ github.ref_name }}
+          fi
+
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/hl7translator:$TAG .
+          docker push ${{ secrets.DOCKER_USERNAME }}/hl7translator:$TAG

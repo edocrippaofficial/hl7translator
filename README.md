@@ -27,6 +27,7 @@ To build and run the jar file, run the following command:
 ```bash
 ./gradlew clean build && \
 export CONFIGMAP_PATH=./translationMap.json && \
+-e HTTP_PORT=3000 \
 export LOG_LEVEL=trace && \
 java -jar build/libs/application.jar
 ```

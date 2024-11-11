@@ -8,7 +8,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"
 }
 
-group = "io.edo"
+group = "io.edocrippaofficial"
 version = "1.0.0"
 
 application {
