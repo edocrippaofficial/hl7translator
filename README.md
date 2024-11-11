@@ -1,6 +1,6 @@
 # HL7 Translator
 
-A simple HTTP server to translate HL7 messages into custom 
+A simple HTTP server to translate HL7 messages into custom JSON
 
 ## Docker Image
 
