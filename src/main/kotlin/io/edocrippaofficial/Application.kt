@@ -16,6 +16,9 @@ fun Application.module() {
     val configMap = loadConfigMap(configMapPath)
 
     install(CallLogging) {
+        filter { call ->
+            !call.request.path().startsWith("/-/")
+        }
         format { call ->
             val uri = call.request.uri
             val httpMethod = call.request.httpMethod.value
