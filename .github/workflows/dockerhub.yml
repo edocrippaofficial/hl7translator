@@ -43,7 +43,7 @@ jobs:
           if [[ ${{ github.ref_type }} == 'branch' ]]; then
             TAG='latest'
           elif [[ ${{ github.ref_type }} == 'tag' ]]; then
-            TAG=${{ github.ref_name }}
+            TAG=${{ github.ref_name#v }}
           fi
 
           docker build -t ${{ secrets.DOCKER_USERNAME }}/hl7translator:$TAG .
