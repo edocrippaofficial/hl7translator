@@ -31,7 +31,6 @@ dependencies {
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-serialization-gson-jvm")
     implementation("io.ktor:ktor-server-netty-jvm")
-    implementation("io.ktor:ktor-server-call-logging")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("net.logstash.logback:logstash-logback-encoder:8.0")
     implementation("io.ktor:ktor-server-config-yaml")

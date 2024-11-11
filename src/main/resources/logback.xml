@@ -6,6 +6,14 @@
                     <fieldName>time</fieldName>
                     <pattern>[UNIX_TIMESTAMP_AS_NUMBER]</pattern>
                 </timestamp>
+                <mdc>
+                    <entries>
+                        <entry>
+                            <fieldName>reqId</fieldName>
+                            <key>reqId</key>
+                        </entry>
+                    </entries>
+                </mdc>
                 <logLevel/>
                 <message/>
                 <stackTrace/>
