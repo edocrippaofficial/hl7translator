@@ -1,6 +1,7 @@
 
 val kotlin_version: String by project
 val logback_version: String by project
+val hapi_version: String by project
 
 plugins {
     kotlin("jvm") version "2.0.21"
@@ -34,7 +35,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("net.logstash.logback:logstash-logback-encoder:8.0")
     implementation("io.ktor:ktor-server-config-yaml")
-    implementation("ca.uhn.hapi:hapi-base:2.5.1")
+    implementation("ca.uhn.hapi:hapi-base:$hapi_version")
     testImplementation("io.ktor:ktor-server-test-host-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
     testImplementation("com.jayway.jsonpath:json-path:2.9.0")
